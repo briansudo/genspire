@@ -59,8 +59,11 @@ WSGI_APPLICATION = 'genspire.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'genspire_db',
+        'USER': 'brian',
+        'PASSWORD': '',
+        'PORT': '5432',
     }
 }
 
@@ -86,7 +89,8 @@ STATIC_URL = '/static/'
 # HEROKU STUFF
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] =  dj_database_url.config( \
+        default='postgres://zbzfikbjwndigi:J6fdHRProO5UzXBykVtxY1B10d@ec2-54-204-37-92.compute-1.amazonaws.com:5432/dfbsevk4p1mn8i')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
